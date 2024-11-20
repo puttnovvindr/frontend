@@ -4,6 +4,7 @@ import React from 'react';
 // import ProceduralTree from './ProceduralTree';
 // import Task from './Components/Task.jsx';
 import Dashboard from './Components/Dashboard.jsx';
+// import Board from './Components/Board.jsx';
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
       {/* <Task /> */}
       {/* <Homepage /> */}
       <Dashboard />
+      {/* <Board /> */}
 
     </div>
   );

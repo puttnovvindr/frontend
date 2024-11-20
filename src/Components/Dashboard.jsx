@@ -13,9 +13,8 @@ import "./Dashboard.css";
 import StreakSummary from "./StreakSummary";
 import Topbar from "./Topbar";
 import "./Topbar.css";
-import Timer from "./Timer"; // Pastikan path sesuai dengan lokasi timer.jsx
-import Scheduler from "./Scheduler";
-
+import Board from "./Board";
+import Cell from "./Cell";
 
 function Dashboard() {
   const navGroups = [
@@ -121,18 +120,6 @@ function Dashboard() {
 
         <main className="flex-1 p-8">
           <Topbar />
-          {/* Timer Section at Top Right below Header */}
-          <div className="flex justify-end mb-8">
-            <div className="w-3/2 flex space-x-6">
-              <Scheduler className="w-full"/> 
-              <div className="w-1/6"></div>
-              <div className="flex-3">
-              <Timer className=" h-auto" />
-              </div>
-            </div>
-          </div>
-
-
           <div className="grid grid-cols-3 gap-6 mt-8">
             {/* To-Do List Section */}
             <div className="task-overview p-6 bg-gray-100 rounded-lg shadow">
@@ -270,7 +257,170 @@ function Dashboard() {
               </div>
             </div>
 
-            
+            {/* gamification */}
+            <div style={{ padding: "20px", fontFamily: "Arial, sans-serif" }}>
+              <Board />
+
+              {/* Informasi Pengguna dengan Followers */}
+              <div
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  marginBottom: "20px",
+                }}
+              >
+                <div>
+                  <h1
+                    style={{
+                      textAlign: "start",
+                      marginBottom: "0",
+                      marginTop: "7px",
+                      fontWeight: "bold",
+                    }}
+                  >
+                    Putri Sandia
+                  </h1>
+                  <h2
+                    style={{
+                      textAlign: "start",
+                      marginTop: "-3px",
+                      fontWeight: "bold",
+                      color: "gray",
+                      fontSize: "12px",
+                    }}
+                  >
+                    Metropolis
+                  </h2>
+                </div>
+
+                {/* Followers Section */}
+                <div
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    gap: "10px",
+                    marginLeft: "auto", // Posisikan ke kanan
+                  }}
+                >
+                  <span
+                    style={{
+                      display: "flex",
+                      alignItems: "center",
+                      fontSize: "16px",
+                      fontWeight: "bold",
+                    }}
+                  >
+                    <span
+                      role="img"
+                      aria-label="icon"
+                      style={{ marginRight: "5px" }}
+                    >
+                      👤
+                    </span>
+                    126.5K
+                  </span>
+                </div>
+              </div>
+
+              {/* Kotak Level dan Rewards */}
+              <div
+                style={{
+                  display: "flex",
+                  justifyContent: "space-between",
+                  alignItems: "center",
+                  padding: "10px",
+                  width: "270px",
+                  marginTop: "10px",
+                  borderRadius: "10px",
+                  boxShadow: "0 4px 10px rgba(0, 0, 0, 0.1)",
+                  backgroundColor: "#fff",
+                }}
+              >
+                {/* Level dan XP */}
+                <div>
+                  <p style={{ margin: "0 0 5px", fontWeight: "bold" }}>
+                    Lv. 56{" "}
+                    <span style={{ color: "gray", fontWeight: "normal" }}>
+                      4370/5000 XP
+                    </span>
+                  </p>
+                  <div
+                    style={{
+                      height: "5px",
+                      width: "120px",
+                      backgroundColor: "#f0f0f0",
+                      borderRadius: "5px",
+                      overflow: "hidden",
+                    }}
+                  >
+                    <div
+                      style={{
+                        height: "5px",
+                        width: "87%", // Sesuaikan progress XP
+                        backgroundColor: "black",
+                        borderRadius: "5px",
+                      }}
+                    ></div>
+                  </div>
+                </div>
+
+                {/* Rewards */}
+                <div
+                  style={{
+                    display: "flex",
+                    gap: "10px",
+                  }}
+                >
+                  <div
+                    style={{
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "center",
+                      flexDirection: "column",
+                      width: "50px",
+                      height: "50px",
+                      borderRadius: "10px",
+                      backgroundColor: "#f9f9f9",
+                      boxShadow: "0 2px 5px rgba(0, 0, 0, 0.1)",
+                    }}
+                  >
+                    <span
+                      role="img"
+                      aria-label="building"
+                      style={{ fontSize: "20px" }}
+                    >
+                      🏢
+                    </span>
+                    <p style={{ margin: "5px 0 0", fontWeight: "bold" }}>2</p>
+                  </div>
+
+                  <div
+                    style={{
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "center",
+                      flexDirection: "column",
+                      width: "50px",
+                      height: "50px",
+                      borderRadius: "10px",
+                      backgroundColor: "#f9f9f9",
+                      boxShadow: "0 2px 5px rgba(0, 0, 0, 0.1)",
+                    }}
+                  >
+                    <span
+                      role="img"
+                      aria-label="reward"
+                      style={{ fontSize: "20px" }}
+                    >
+                      🏅
+                    </span>
+                    <p style={{ margin: "5px 0 0", fontWeight: "bold" }}>
+                      1000
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
 
             {/* Streak Summary Section */}
             <div className="p-6 bg-gray-100 rounded-lg shadow">
@@ -282,12 +432,6 @@ function Dashboard() {
                 meetingsDecrease={meetingsDecrease}
               />
             </div>
-
-            {/* Timer Section */}
-            {/* <div className="p-6 bg-gray-100 rounded-lg shadow">
-              <Timer />
-            </div> */}
-
           </div>
         </main>
       </div>
