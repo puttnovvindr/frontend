@@ -1,0 +1,9 @@
+*{
+    /* border: solid red 1px; */
+    box-sizing: border-box;
+    color: white;
+}
+
+body{
+    background-color: black;
+}

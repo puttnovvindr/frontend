@@ -1,0 +1,60 @@
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+.separator {
+  border-left: 2px dashed #ccc; /* Garis putus-putus */
+  height: 100%;
+}
+
+.daily-summary {
+  border: 1px solid #e5e7eb;
+  max-width: 300px;
+}
+
+.daily-summary h2 {
+  color: #1f2937;
+}
+
+.daily-summary p {
+  color: #4b5563;
+}
+
+.daily-summary .text-red-500 {
+  color: #ef4444;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}

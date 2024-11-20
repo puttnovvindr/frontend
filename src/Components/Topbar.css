@@ -1,0 +1,13 @@
+.topbar {
+    height: 60px; /* Tinggi topbar */
+    position: sticky; /* Menempel di bagian atas */
+    top: 0; /* Tetap di atas halaman */
+    z-index: 50; /* Memastikan di atas elemen lain */
+    background-color: #f3f4f6; /* Warna latar belakang */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Efek bayangan */
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 20px;
+  }
+  
