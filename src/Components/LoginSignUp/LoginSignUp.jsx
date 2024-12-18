@@ -8,7 +8,7 @@ export const LoginSignUp = () => {
   const [showTerms, setShowTerms] = useState(false);
   const [isChecked, setIsChecked] = useState(false);
   const [theme, setTheme] = useState("light");
-  // const themeToggleButton = useRef(null);
+  const themeToggleButton = useRef(null);
   const [error, setError] = useState("");
 
   const toggleTheme = () => {
@@ -207,7 +207,7 @@ export const LoginSignUp = () => {
 
             <div className="submit-container">
               <div
-                className={'submit ${!isChecked ? "disabled" : ""}'}
+                className={`submit ${!isChecked ? "disabled" : ""}`}
                 onClick={isChecked ? handleSignIn : null}
               >
                 Sign In
@@ -685,5 +685,3 @@ export const LoginSignUp = () => {
     </div>
   );
 };
-
-export default LoginSignUp;
