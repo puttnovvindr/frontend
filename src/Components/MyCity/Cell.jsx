@@ -1,3 +1,5 @@
+//Cell.jsx versi CityPage//
+
 import React from "react";
 
 // Peta nama kota ke nama file gambar
@@ -87,4 +89,4 @@ const Cell = ({ value, onChange, validCities }) => {
   );
 };
 
-export default Cell;
+export default Cell;

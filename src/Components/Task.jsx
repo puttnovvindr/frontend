@@ -2,8 +2,7 @@ import React, { useState } from 'react';
 import Calendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
 
-
-function Dashboard() {
+function Task() {
   const navLinks = [
     { name: "Dashboard", href: "#" },
     { name: "My City", href: "#" },
@@ -180,7 +179,7 @@ function Dashboard() {
               minDate={new Date()}
               onChange={handleDateChange}
               className="react-calendar !border-none !bg-gray-100 text-black"
-              tileClassName="relative rounded-full text-center !hover:bg-gray-200 text-black"
+              tileClassName="relative rounded-full text-center !hover:bg-gray-200"
               tileContent={({ date }) => {
                 const dateString = date.toISOString().split('T')[0];
                 const hasTask = tasks.some((task) => task.dueDate === dateString);
@@ -255,4 +254,4 @@ function Dashboard() {
   );
 }
 
-export default Dashboard;
+export default Task;
