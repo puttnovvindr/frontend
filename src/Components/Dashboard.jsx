@@ -1,37 +1,34 @@
-import React, { useState } from "react";
-import StreakSummary from "./StreakSummary";
+import React from "react";
+import { useTheme } from "./ThemeContext";
+import Navbar from "./Navbar";
 import Topbar from "./Topbar";
-import Timer from "./Timer"; // Pastikan path sesuai dengan lokasi timer.jsx
+import StreakSummary from "./StreakSummary";
+import Timer from "./Timer";
 import Scheduler from "./Scheduler";
 import Notes from "./Notes";
 import TaskDashboard from "./TaskDashboard";
 import City from "./City";
-import Cell from "./Cell";
-import Board from "./Board";
-import Navbar from "./Navbar";
-
 
 function Dashboard() {
+  const { isDarkMode } = useTheme(); // Access dark mode state from context
+
   return (
-    <section className="min-h-screen flex bg-white text-gray-900">
-      {/* Sidebar kiri */}
-      <aside className="w-1/5 bg-white p-8 border-r">
-        <Navbar />
+    <section className={`min-h-screen flex ${isDarkMode ? 'bg-gray-800 text-white' : 'bg-white text-gray-900'}`}>
+      <aside className="w-1/5 p-8 border-r">
+        <Navbar /> {/* Navbar will automatically adjust based on dark mode */}
       </aside>
 
       {/* Main content area */}
-      <div className="flex-1 flex flex-col ml-1/5"> {/* Add margin-left to avoid overlap with sidebar */}
-        {/* Topbar above scheduler and timer */}
+      <div className="flex-1 flex flex-col ml-1/5">
         <div className="w-full">
-          <Topbar /> {/* Topbar stays here */}
+          <Topbar /> {/* Topbar will adjust based on dark mode */}
         </div>
 
         {/* Content Section below Topbar */}
-        <div className="flex-1 bg-white flex border-l">
-          {/* Scheduler & Notes Section */}
+        <div className="flex-1 flex border-l">
           <div className="flex flex-col">
             <Scheduler />
-            <div className="grid grid-cols-2">
+            <div className="grid grid-cols-2 gap-4">
               <TaskDashboard />
               <Notes />
             </div>
@@ -39,9 +36,9 @@ function Dashboard() {
 
           {/* Timer Section */}
           <div className="border-l">
-            <Timer/>
+            <Timer />
             <City />
-            <StreakSummary />
+            <StreakSummary /> {/* StreakSummary will adjust based on dark mode */}
           </div>
         </div>
       </div>

@@ -1,6 +1,8 @@
 import React, { useState, useEffect, useRef } from "react";
-import { FaBell, FaUserCircle } from "react-icons/fa";
+import { FaBell, FaUserCircle, FaMoon, FaSun } from "react-icons/fa"; // Add moon and sun icons
 import { MdModeEdit, MdClose } from "react-icons/md";
+import Navbar from "./Navbar";
+import { useTheme } from "./ThemeContext";
 
 function Topbar() {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -15,7 +17,9 @@ function Topbar() {
   const [profileImage, setProfileImage] = useState(null);
   const [imageInputKey, setImageInputKey] = useState(Date.now());
 
-  // Example notifications
+  // Dark Mode state
+  const { isDarkMode, toggleDarkMode } = useTheme();
+
   const [notifications, setNotifications] = useState([
     { id: 1, message: "You have a new message!", time: "5 minutes ago" },
     { id: 2, message: "Your profile was updated successfully.", time: "1 hour ago" },
@@ -75,12 +79,19 @@ function Topbar() {
     setIsNotificationOpen(true);
   };
 
+  
+
   return (
-    <header className="bg-gray-100 px-8 py-4 flex items-center justify-between w-full border-b">
+    <header className={`px-8 py-4 flex items-center justify-between w-full border-b ${isDarkMode ? 'bg-gray-800 text-white' : 'bg-gray-100 text-gray-900'}`}>
       <div className="flex items-center justify-between w-full">
-        <h2 className="text-2xl font-bold text-gray-800">Dashboard</h2>
+        <h2 className="text-2xl font-bold">Dashboard</h2>
 
         <div className="flex items-center space-x-6 relative">
+          {/* Dark Mode toggle */}
+          <button onClick={toggleDarkMode} className="text-xl">
+            {isDarkMode ? <FaSun /> : <FaMoon />}
+          </button>
+
           {/* Notifications */}
           <button
             className="relative text-gray-600 hover:text-gray-800"
@@ -102,16 +113,11 @@ function Topbar() {
                 Notifications
               </div>
               <ul
-                className={`${
-                  showAllNotifications ? "max-h-80" : "max-h-36"
-                } overflow-y-auto`}
+                className={`${showAllNotifications ? "max-h-80" : "max-h-36"} overflow-y-auto`}
               >
                 {(showAllNotifications ? notifications : notifications.slice(0, 3)).map(
                   (notification) => (
-                    <li
-                      key={notification.id}
-                      className="p-3 hover:bg-gray-100 border-b last:border-none"
-                    >
+                    <li key={notification.id} className="p-3 hover:bg-gray-100 border-b last:border-none">
                       <p className="text-sm text-gray-800">{notification.message}</p>
                       <p className="text-xs text-gray-500">{notification.time}</p>
                     </li>
@@ -130,8 +136,7 @@ function Topbar() {
               )}
             </div>
           )}
-        
-        
+
           {/* User Profile */}
           <div
             className="flex items-center space-x-2 cursor-pointer hover:text-gray-800"
@@ -205,7 +210,7 @@ function Topbar() {
                   />
                 </div>
                 <div className="flex items-center space-x-4 border-b pb-4">
-                  <label className="text-gray-700 w-32">Email Account</label>
+                  <label className="text-gray-700 w-32">Email</label>
                   <input
                     type="email"
                     name="email"
@@ -215,9 +220,9 @@ function Topbar() {
                   />
                 </div>
                 <div className="flex items-center space-x-4 border-b pb-4">
-                  <label className="text-gray-700 w-32">Mobile Phone</label>
+                  <label className="text-gray-700 w-32">Phone</label>
                   <input
-                    type="text"
+                    type="tel"
                     name="phone"
                     value={formData.phone}
                     onChange={handleInputChange}
@@ -226,43 +231,24 @@ function Topbar() {
                 </div>
                 <div className="flex items-center space-x-4 border-b pb-4">
                   <label className="text-gray-700 w-32">Location</label>
-                  <select
+                  <input
+                    type="text"
                     name="location"
                     value={formData.location}
                     onChange={handleInputChange}
                     className="p-2 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400 w-full"
-                  >
-                    <option value="Indonesia">Indonesia</option>
-                    <option value="USA">USA</option>
-                    <option value="UK">UK</option>
-                    <option value="Canada">Canada</option>
-                  </select>
+                  />
                 </div>
               </div>
+              <div className="mt-4 text-right">
+                <button
+                  onClick={handleSaveChanges}
+                  className="bg-blue-500 text-white px-6 py-2 rounded-lg hover:bg-blue-600"
+                >
+                  Save Changes
+                </button>
+              </div>
             </div>
-            <div className="mt-4 flex justify-end">
-              <button
-                onClick={handleSaveChanges}
-                className="bg-blue-500 text-white p-2 rounded-md hover:bg-blue-600"
-              >
-                Save Changes
-              </button>
-            </div>
-          </div>
-        </div>
-      )}
-
-      {isNotificationOpen && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
-          <div className="bg-green-500 text-white p-6 rounded-lg shadow-lg w-72">
-            <h3 className="text-xl font-semibold">Profile Updated</h3>
-            <p>Your profile has been successfully updated!</p>
-            <button
-              onClick={toggleNotification}
-              className="mt-4 bg-white text-green-500 p-2 rounded-md"
-            >
-              Close
-            </button>
           </div>
         </div>
       )}
