@@ -1,19 +1,113 @@
 body {
-    background-color: black; 
+    background-color: white;
     margin: 0;
     display: flex;
     height: 100vh;
     margin-top: -180px;
 }
 
+/* Dark Mode */
+.dark-mode {
+    background-color: #121212;
+    color: #ffffff;
+}
+
+.dark-mode .title-message h1,
+.dark-mode .title-message p,
+.dark-mode .checkbox label,
+.dark-mode .to-login-page,
+.dark-mode .to-signup-page,
+.dark-mode .login-link,
+.dark-mode .signup-link,
+.dark-mode .header .text {
+    color: #ffffff;
+}
+
+.dark-mode .container,
+.dark-mode .login-container {
+    background: rgba(40, 40, 40, 0.9);
+}
+
+.dark-mode .input, 
+.dark-mode .input-login {
+    background: #333333;
+    border: 1px solid #555555;
+}
+
+.dark-mode .input input, 
+.dark-mode .input-login input {
+    color: #ffffff;
+}
+
+.dark-mode .submit {
+    background: #1E88E5; 
+}
+
+/* Light Mode */
+.light-mode {
+    background-color: white;
+    color: #333;
+}
+
+.theme-toggle {
+    padding: 5px 10px;
+    font-size: 16px;
+    cursor: pointer;
+    background-color: #0f0c29;
+    color: white;
+    border: none;
+    border-radius: 50px;
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 5vh;
+    transition: background-color 0.3s;
+    -webkit-border-radius: 50px;
+    -moz-border-radius: 50px;
+    -ms-border-radius: 50px;
+    -o-border-radius: 50px;
+    z-index: 9999; /* Menambahkan z-index untuk memastikan tombol di atas elemen lain */
+}
+
+
+/* .theme-toggle {
+    padding: 5px 10px;
+    font-size: 16px;
+    cursor: pointer;
+    background-color: #0f0c29;
+    color: white;
+    border: none;
+    border-radius: 50px;
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 5vh;
+    transition: background-color 0.3s;
+    -webkit-border-radius: 50px;
+    -moz-border-radius: 50px;
+    -ms-border-radius: 50px;
+    -o-border-radius: 50px;
+} */
+
+.theme-toggle:hover {
+    transform: scale(1.1);
+    transition: transform 0.2s ease;
+}
+
 .title-message {
-    color: #fff;
+    color: #333;
     flex: 1;
     display: flex;
     flex-direction: column;
-    justify-content: center; 
-    padding-left: 150px;
-    margin-top:170px;
+    justify-content: center;
+    padding-left: 160px;
+    margin-top: 170px;
     padding-bottom: -30px;
     width: 40%;
     z-index: 10;
@@ -22,53 +116,57 @@ body {
 }
 
 .title-message h1 {
-    text-align: justify; 
+    text-align: justify;
     font-weight: bold;
     font-size: 45px;
+    margin-bottom: 30px;
+    margin-top: 75px;
+    margin-left: 22%;
 }
 
 .title-message p {
-    text-align: justify; 
-    margin-top: -25px; 
+    text-align: justify;
+    margin-top: 40px;
+    margin-left: 22%;
 }
 
 .container {
     display: flex;
     flex-direction: column;
-    margin-left: 775px;
-    margin-top: -200px;
+    margin-left: 55%;
+    margin-top: -240px;
     width: 350px;
-    background: rgba(255, 255, 255, 0.1);
+    background: rgba(240, 240, 240, 0.7);
     border-radius: 8px;
 }
 
 .login-container {
     display: flex;
     flex-direction: column;
-    margin-left: 175px;
-    margin-top: -87px;
+    margin-left: 20%;
     width: 350px;
-    background: rgba(255, 255, 255, 0.1);
+    background: rgba(240, 240, 240, 0.7);
     border-radius: 8px;
     z-index: 10;
     position: relative;
+    top: 45%; /* Membuat posisi vertikal */
+    transform: translateY(-95%); /* Mengatur posisi ke atas */
 }
 
 .header {
     display: flex;
     flex-direction: column;
-    align-items: flex-start; 
+    align-items: flex-start;
     gap: 9px;
     width: 100%;
-    margin-top: 30px;
+    margin-top: 20px;
     padding-left: 30px;
 }
 
 .text {
-    color: #fff;
+    color: #333;
     font-size: 30px;
     font-weight: 700;
-    
 }
 
 .inputs {
@@ -78,23 +176,24 @@ body {
     gap: 10px;
 }
 
-.input {
+.input, .input-login {
     display: flex;
     align-items: center;
     margin: auto;
     width: 300px;
     height: 35px;
-    background: #fff;
+    background: #f5f5f5;
     border-radius: 6px;
+    border: 1px solid #ccc;
 }
 
-.input input {
+.input input, .input-login input {
     height: 50px;
     width: 400px;
     background: transparent;
     border: none;
     outline: none;
-    color: #797979;
+    color: #333;
     font-size: 12px;
     margin-left: 15px;
 }
@@ -104,27 +203,6 @@ body {
     display: flex;
     flex-direction: column;
     gap: 12px;
-}
-
-.input-login {
-    display: flex;
-    align-items: center;
-    margin: auto;
-    width: 300px;
-    height: 35px;
-    background: #fff;
-    border-radius: 6px;
-}
-
-.input-login input {
-    height: 50px;
-    width: 400px;
-    background: transparent;
-    border: none;
-    outline: none;
-    color: #797979;
-    font-size: 12px;
-    margin-left: 15px;
 }
 
 .submit-container {
@@ -141,7 +219,7 @@ body {
     align-items: center;
     width: 300px;
     height: 35px;
-    color: #fff;
+    color: white;
     background: #3A9CFF;
     border-radius: 5px;
     font-size: 19px;
@@ -162,7 +240,7 @@ body {
 }
 
 .checkbox label {
-    color: #fff;
+    color: #333;
     margin-left: 25px;
     font-size: 12px;
     cursor: pointer;
@@ -174,7 +252,7 @@ body {
     display: inline-block;
     width: 12px;
     height: 12px;
-    border: 2px solid #fff;
+    border: 2px solid #333; 
     border-radius: 50%;
     margin-right: 10px;
     background-color: #fff;
@@ -196,29 +274,25 @@ body {
 }
 
 .to-login-page {
-    margin-top: -15px;
+    margin-top: -5px;
     padding-bottom: 30px;
-    color: #fff;
+    color: #333;
     margin-left: -107px;
     font-size: 13px;
 }
 
 .login-link {
-    color: #fff;
+    color: #3A9CFF;
     font-weight: bold;
     cursor: pointer;
     text-decoration: underline;
-}
-
-.login-left {
-    margin-left: 50px; 
 }
 
 .to-signup-page {
     margin-top: -10px;
     margin-left: 25px;
     text-align: left;
-    color: #fff;
+    color: #333;
     font-size: 13px;
     padding-bottom: 45px;
 }
@@ -231,44 +305,53 @@ body {
 }
 
 .title-message-login {
-    color: #fff;
+    color: #333;
     flex: 1;
     display: flex;
     flex-direction: column;
-    justify-content: center; 
-    padding-left: 620px; 
-    margin-top: 150px;
+    justify-content: center;
+    margin-left: 50%;
+    margin-top: 200px;
     width: 40%;
     align-items: flex-start;
-    z-index: 10;
+    z-index: 100px;
     position: relative;
-    top: 200px;
+    top: 150px;
 }
 
 .title-message-login h1 {
     text-align: justify;
     font-weight: bold;
     font-size: 45px;
+    margin-top: 85px;
+    margin-bottom: 60px;
+}
+
+
+.login-boost-title {
+    display: inline-block;
+    font-size: 50px;  
 }
 
 .title-message-login p {
-    text-align: justify; 
-    margin-top: -25px; 
+    text-align: justify;
+    margin-top: -25px;
+    width: 70%;
 }
 
 .round-checkbox {
     appearance: none;
     width: 20px;
     height: 20px;
-    border: 2px solid #fff;
+    border: 2px solid #333; 
     border-radius: 50%;
     cursor: pointer;
     outline: none;
-    margin-right: 10px; 
+    margin-right: 10px;
 }
 
 .round-checkbox:checked {
-    background: #3A9CFF; 
+    background: #3A9CFF;
 }
 
 .terms-modal {
@@ -291,7 +374,7 @@ body {
     width: 80%;
     max-width: 500px;
     position: relative;
-    scroll-behavior:auto;
+    scroll-behavior: auto;
     max-height: 90vh;
     overflow-y: auto;
     text-align: justify;
@@ -306,10 +389,10 @@ body {
 }
 
 .terms-link {
-    color: #3A9CFF; 
+    color: #3A9CFF;
     cursor: pointer;
     text-decoration: underline;
-}  
+}
 
 .error-message {
     color: red;
