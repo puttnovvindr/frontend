@@ -15,9 +15,6 @@ const generateWeek = (startDate) => {
   return week;
 };
 
-
-
-// Dummy data for tasks
 const tasks = [
   { id: 1, start: '2024-11-20T03:00', end: '2024-11-20T05:00', title: 'Task 1', priority: 'high' },
   { id: 2, start: '2024-11-20T10:00', end: '2024-11-20T12:00', title: 'Task 2', priority: 'low' },
@@ -115,9 +112,7 @@ const Scheduler = () => {
     return daysArray;
   };
   
-  
-
-  
+  const [darkMode, setDarkMode] = useState(false);
 
   return (
     <div className="container mx-auto">
@@ -167,7 +162,6 @@ const Scheduler = () => {
         </div>
         )}
 
-  
         {/* Scheduler 2: Week-based task overview */}
         {view === 2 && (
           <div className="flex flex-col h-full">
@@ -224,7 +218,7 @@ const Scheduler = () => {
             </div>
           </div>
         )}
-  
+
         {/* Scheduler 3: Month-based task overview */}
         {view === 3 && (
           <div className="flex flex-col h-full">
@@ -235,15 +229,15 @@ const Scheduler = () => {
               </h2>
               <button
                 className="px-2 py-1 bg-gray-300 rounded hover:bg-gray-400 transition"
-                onClick={() => handleChangeMonth(-1)} // Decrease month
+                onClick={() => handleChangeMonth(-1)}
               >
-                <IoIosArrowBack size={16} /> {/* Left Arrow */}
+                <IoIosArrowBack size={16} />
               </button>
               <button
                 className="px-2 py-1 bg-gray-300 rounded ml-2 hover:bg-gray-400 transition"
-                onClick={() => handleChangeMonth(1)} // Increase month
+                onClick={() => handleChangeMonth(1)}
               >
-                <IoIosArrowForward size={16} /> {/* Right Arrow */}
+                <IoIosArrowForward size={16} /> 
               </button>
             </div>
   
@@ -251,7 +245,7 @@ const Scheduler = () => {
               className="grid grid-cols-7 gap-2 overflow-auto"
               style={{
                 maxWidth: '100%',
-                maxHeight: 'calc(100vh - 200px)', // Adjust height
+                maxHeight: 'calc(100vh - 200px)',
               }}
             >
               {Array.from({ length: new Date(selectedDate.getFullYear(), selectedDate.getMonth() + 1, 0).getDate() }, (_, i) => {
@@ -283,14 +277,14 @@ const Scheduler = () => {
         <div className="flex justify-end gap-3 items-center w-full">
           <button
             onClick={() => handleChangeView('prev')}
-            className="flex justify-center p-1 bg-blue-500 text-white rounded-full shadow-md"
+            className="flex justify-center p-1 mt-1 bg-blue-400 text-white rounded-full shadow-md"
             style={{ width: '35px' }}
           >
             <IoIosArrowBack />
           </button>
           <button
             onClick={() => handleChangeView('next')}
-            className="flex justify-center p-1 bg-blue-500 text-white rounded-full shadow-md"
+            className="flex justify-center p-1 mt-1 bg-blue-400 text-white rounded-full shadow-md"
             style={{ width: '35px' }}
           >
             <IoIosArrowForward />

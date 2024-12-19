@@ -10,7 +10,8 @@ import {
 } from 'react-icons/fa';
 import QuestComponent from './Quest';
 import Achievements from './Achievements';
-import Board from './Board'; // Import Board component
+import Board from './Board';
+import Topbar from "./Topbar";
 import Navbar from '../Navbar';
 import Leaderboard from './Leaderboard';
 import Stats from './Stats';
@@ -20,6 +21,10 @@ const LevelProgress = ({ currentXP, maxXP, level, userName, cityType }) => {
   const progress = (currentXP / maxXP) * 100;
   return (
     <div className="py-4 mb-8">
+      <div className="w-full">
+          <Topbar />
+        </div>
+        
       <div className="flex justify-between items-center">
         <p className="font-semibold text-gray-800 text-2xl">Level {level}</p>
         <p className="text-gray-500">

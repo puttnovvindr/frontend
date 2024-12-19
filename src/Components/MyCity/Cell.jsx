@@ -1,5 +1,3 @@
-//Cell.jsx versi CityPage//
-
 import React from "react";
 
 // Peta nama kota ke nama file gambar
@@ -29,10 +27,9 @@ const cityImages = {
   Radiant: "/assets/radiant.jpg",
 };
 
-const Cell = ({ value, onChange, validCities }) => {
+const Cell = ({ value, onChange, validCities, darkMode }) => {
   const handleChange = (e) => {
     const selectedCity = e.target.value;
-
     onChange(selectedCity);
   };
 
@@ -44,7 +41,8 @@ const Cell = ({ value, onChange, validCities }) => {
         textAlign: "center",
         border: "1px solid #ccc",
         position: "relative",
-        backgroundColor: value ? "white" : "transparent", 
+        backgroundColor: darkMode ? "#333" : "transparent", // Ganti warna latar belakang untuk dark mode
+        color: darkMode ? "#000" : "#000", 
       }}
     >
       {value && cityImages[value] ? (
@@ -62,31 +60,30 @@ const Cell = ({ value, onChange, validCities }) => {
         />
       ) : null}
 
-<select
-  value={value}
-  onChange={handleChange}
-  style={{
-    width: "100%",
-    height: "100%",
-    opacity: value ? 0 : 1,
-    zIndex: value ? -1 : 1,
-    textAlign: "center",
-    backgroundColor: "transparent",
-    border: "none",
-    fontSize: "12px",
-    overflowY: "scroll",
-  }}
->
-  <option value="">--Select--</option>
-  {validCities.map((city) => (
-    <option key={city} value={city}>
-      {city}
-    </option>
-  ))}
-</select>
-
+      <select
+        value={value}
+        onChange={handleChange}
+        style={{
+          width: "100%",
+          height: "100%",
+          opacity: value ? 0 : 1,
+          zIndex: value ? -1 : 1,
+          textAlign: "center",
+          backgroundColor: darkMode ? "#444" : "transparent", // Warna latar belakang dropdown
+          border: "none",
+          fontSize: "12px",
+          color: darkMode ? "#000" : "#000", // Warna teks dalam dropdown
+        }}
+      >
+        <option value="">--Select--</option>
+        {validCities.map((city) => (
+          <option key={city} value={city} style={{ color: darkMode ? "#000" : "#000" }}>
+            {city}
+          </option>
+        ))}
+      </select>
     </div>
   );
 };
 
-export default Cell;
+export default Cell;

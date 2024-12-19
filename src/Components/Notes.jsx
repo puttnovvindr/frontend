@@ -1,8 +1,10 @@
 import React, { useState } from "react";
 import { HiOutlineEllipsisVertical } from "react-icons/hi2";
 import { MdDelete } from "react-icons/md";
+import { useTheme } from "./ThemeContext";
 
 function Notes() {
+  const { isDarkMode } = useTheme();
   const [notes, setNotes] = useState([]);
   const [showTitleInput, setShowTitleInput] = useState(false);
   const [newNote, setNewNote] = useState({ title: "", text: "" });
@@ -14,7 +16,11 @@ function Notes() {
       setShowTitleInput(false);
       setNotes([
         ...notes,
-        { id: Date.now(), title: newNote.title.trim(), text: newNote.text.trim() },
+        {
+          id: Date.now(),
+          title: newNote.title.trim(),
+          text: newNote.text.trim(),
+        },
       ]);
       setNewNote({ title: "", text: "" });
     }
@@ -31,21 +37,25 @@ function Notes() {
   };
 
   const handleRightClick = (e, noteId) => {
-    e.preventDefault(); // Prevent default browser context menu
-    setContextMenu({ x: e.clientX, y: e.clientY }); // Set position of custom menu
-    setSelectedNoteId(noteId); // Set the selected note ID
+    e.preventDefault(); 
+    setContextMenu({ x: e.clientX, y: e.clientY }); 
+    setSelectedNoteId(noteId); 
   };
 
-  const closeContextMenu = () => setContextMenu(null); // Close the context menu
+  const closeContextMenu = () => setContextMenu(null); 
 
   return (
     <section onClick={closeContextMenu}>
-      <div className="p-6 py-12 bg-white border-l">
+      <div
+        className={`p-6 py-12 ${
+          isDarkMode ? "bg-gray-900 text-white" : "bg-gray-100 text-gray-900"
+        } border-l`}
+      >
         <div className="flex items-center justify-between">
           <h2 className="text-2xl font-bold">Notes</h2>
           <button
             onClick={toggleTitleInput}
-            className="text-gray-600 p-1 rounded-full bg-gray-200 hover:bg-gray-300"
+            className="text-gray-600 p-1 rounded-full bg-gray-200 hover:bg-gray-300 dark:bg-gray-700 dark:text-white dark:hover:bg-gray-600"
             title="Add Note"
           >
             <HiOutlineEllipsisVertical className="text-xl" />
@@ -63,7 +73,9 @@ function Notes() {
               <div className="mb-4">
                 <label
                   htmlFor="noteTitle"
-                  className="block text-gray-700 font-semibold mb-2"
+                  className={`block ${
+                    isDarkMode ? "text-gray-200" : "text-gray-700"
+                  } font-semibold mb-2`}
                 >
                   Note Title
                 </label>
@@ -76,7 +88,9 @@ function Notes() {
                       setNewNote({ ...newNote, title: e.target.value })
                     }
                     placeholder="Enter note title"
-                    className="border border-gray-300 rounded-lg px-4 py-2 w-full focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    className={`border ${
+                      isDarkMode ? "border-gray-600" : "border-gray-300"
+                    } rounded-lg px-4 py-2 w-full focus:outline-none focus:ring-2 focus:ring-blue-500`}
                   />
                   <button
                     type="submit"
@@ -94,7 +108,9 @@ function Notes() {
           {notes.map((note) => (
             <div
               key={note.id}
-              className="relative note flex flex-col bg-blue-400 p-4 rounded-b-2xl rounded-t-lg"
+              className={`relative note flex flex-col ${
+                isDarkMode ? "bg-orange-400" : "bg-orange-200"
+              } p-4 rounded-b-2xl rounded-t-lg`}
               onContextMenu={(e) => handleRightClick(e, note.id)} // Right-click handler
             >
               <div className="flex justify-between items-center">
@@ -112,7 +128,9 @@ function Notes() {
                   );
                 }}
                 placeholder="Enter note text"
-                className="text-white bg-transparent border-none outline-none w-full mt-2 resize-none placeholder-gray-100"
+                className={`text-white bg-transparent border-none outline-none w-full mt-2 resize-none placeholder-gray-100 ${
+                  isDarkMode ? "placeholder-gray-300" : "placeholder-gray-500"
+                }`}
                 rows="1"
                 style={{ height: "auto", minHeight: "50px" }}
               />
@@ -124,14 +142,14 @@ function Notes() {
       {/* Context Menu */}
       {contextMenu && (
         <div
-          className="absolute bg-white shadow-lg rounded-lg p-2 border transform -translate-x-18 translate-y-60"
+          className="absolute bg-white shadow-lg rounded-lg p-2 border transform -translate-x-18 translate-y-60 dark:bg-gray-800 dark:border-gray-600"
           style={{ top: contextMenu.y, left: contextMenu.x }}
         >
           <button
             onClick={() => handleDeleteNote(selectedNoteId)}
-            className="text-red-500 px-1 py-1 hover:bg-gray-100 rounded"
+            className="text-red-500 px-1 py-1 hover:bg-gray-100 rounded dark:hover:bg-gray-700 dark:text-red-300"
           >
-            <MdDelete className="text-2xl"/>
+            <MdDelete className="text-2xl" />
           </button>
         </div>
       )}

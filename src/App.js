@@ -4,8 +4,9 @@ import React from 'react';
 // import ProceduralTree from './ProceduralTree';
 // import Task from './Components/Task.jsx';
 import Dashboard from './Components/Dashboard.jsx';
-// import Board from './Components/Board.jsx';
+import CityPage from './Components/MyCity/CityPage.jsx';
 import { ThemeProvider } from './Components/ThemeContext';
+
 
 function App() {
   return (
@@ -14,9 +15,9 @@ function App() {
       {/* <LoginSignUp/> */}
       {/* <Homepage /> */}
       {/* <Task /> */}
+      < CityPage />
       {/* <Homepage /> */}
-      <Dashboard />
-      {/* <Board /> */}
+      {/* < Dashboard /> */}
       </ThemeProvider>
 
     </div>

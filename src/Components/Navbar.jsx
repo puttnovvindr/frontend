@@ -1,10 +1,9 @@
 import React from "react";
 import { FaHome, FaBuilding, FaClipboardList, FaComment, FaQuestionCircle, FaCog, FaSignOutAlt } from "react-icons/fa";
-import "./Navbar.css"; // Make sure you have relevant styles here
-import { useTheme } from "./ThemeContext"; // Make sure your ThemeContext is set up correctly
+import { useTheme } from "./ThemeContext"; 
 
 function Navbar() {
-  const { isDarkMode, toggleTheme } = useTheme(); // Assuming `toggleTheme` exists to toggle dark mode
+  const { isDarkMode } = useTheme(); 
 
   const navGroups = [
     [
@@ -21,7 +20,7 @@ function Navbar() {
   ];
 
   return (
-    <div className={`navbar ${isDarkMode ? "dark" : ""}`}>
+    <div className={`navbar flex flex-col ${isDarkMode ? "bg-gray-900 text-white" : "bg-gray-100 text-gray-800"}`}>
       <div className="topbar flex justify-between items-center p-4">
         <div className="logo flex items-center space-x-4">
           <img
@@ -29,19 +28,12 @@ function Navbar() {
             alt="Taskspring Logo"
             className="w-10 h-10 shadow-md"
           />
-          <h3 className="text-2xl font-semibold text-gray-900 dark:text-white">Taskspring</h3>
+          <h3 className="text-2xl font-semibold">{`Taskspring`}</h3>
         </div>
-        {/* Add button to toggle dark mode */}
-        <button
-          onClick={toggleTheme}
-          className="text-2xl text-gray-800 dark:text-white"
-        >
-          {isDarkMode ? "🌙" : "🌞"} {/* Simple toggle icon for dark mode */}
-        </button>
       </div>
 
       {/* Navigation Links */}
-      <nav>
+      <nav className="flex flex-col">
         {navGroups.map((group, groupIndex) => (
           <div key={groupIndex} className={groupIndex > 0 ? "mt-[460px]" : ""}>
             {group.map((link, index) => (
